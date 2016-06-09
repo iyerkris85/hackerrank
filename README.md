@@ -1,2 +1,3 @@
 # hackerrank
-Hackerrack 
+
+Hacker Rank puzzles
