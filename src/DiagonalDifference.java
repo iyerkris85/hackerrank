@@ -2,13 +2,11 @@
  * Created by krishnandevarajan on 6/13/16.
  */
 
-import java.io.*;
 import java.util.*;
 
 public class DiagonalDifference {
 
         public static void main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
             Scanner in = new Scanner(System.in);
             int _a_size = Integer.parseInt(in.nextLine());
