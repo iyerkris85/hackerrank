@@ -13,7 +13,7 @@
 
         public static void main(String args[]){
 
-            permuteString perm = new permuteString("abcd");
+            permuteString perm = new permuteString("abcde");
             perm.permute();
         }
 
@@ -27,7 +27,7 @@
                     out.append( in.charAt(i) );
                     used[i] = true;
                     permute();
-                    System.out.println(used[0]+""+used[1]+used[2]+used[3]);
+                    //System.out.println(used[0]+""+used[1]+used[2]+used[3]);
                     used[i] = false;
                     out.setLength( out.length() - 1 );
                 }

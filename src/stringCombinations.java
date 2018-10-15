@@ -5,7 +5,7 @@ public class stringCombinations {
     public stringCombinations( final String str ){ in = str; }
 
     public static void main(String args[]) {
-        stringCombinations input = new stringCombinations("wxyz");
+        stringCombinations input = new stringCombinations("abcd");
         input.combine( 0 );
     }
     private void combine(int start ){
@@ -17,4 +17,6 @@ public class stringCombinations {
             out.setLength( out.length() - 1 );
         }
     }
+
+
 }
