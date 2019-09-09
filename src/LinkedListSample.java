@@ -8,13 +8,13 @@ class LinkedListSample
 
         Node(String value){
             this.value = value;
-            next = null;
+            //next = null;
         }
     }
 
     public static void main(String args[]){
 
-        Node head = new Node("Sample");
+        Node head = new Node("1");
         Node two = new Node("2");
         Node three = new Node("3");
         Node four = new Node("4");
@@ -32,6 +32,32 @@ class LinkedListSample
 
         System.out.println("Is the LinkedList Circular :- " + isCircular(head));
         System.out.println("Node value from m'th :- " + frommth(head,5));
+        System.out.println("Length of list :- " + listLength(head));
+        System.out.println("Print the List :- ");
+        printList(head);
+        System.out.println(" ");
+        System.out.println("Swap concurrent list :- ");
+        printList(swap(head));
+        System.out.println(" ");
+        System.out.println("Reversed Linked List :- ");
+        printList(reverse(head));
+
+        Node list1 = new Node("1");
+        Node list12 = new Node("2");
+        Node list13 = new Node("4");
+        list1.next = list12;
+        list12.next = list13;
+
+        Node list2 = new Node("1");
+        Node list21 = new Node("3");
+        Node list22 = new Node("4");
+        list2.next = list21;
+        list21.next = list22;
+
+        System.out.println(" ");
+        System.out.println("Merged List");
+        printList(mergeList(list1,list2));
+
     }
 
     /**
@@ -81,5 +107,71 @@ class LinkedListSample
         }
 
         return mnode.value;
+    }
+
+    public static void printList(Node head){
+        System.out.print(head.value + " => ");
+        if(head.next != null){
+            printList(head.next);
+        }
+
+    }
+    public static Node swap(Node head){
+
+          String temp = "";
+          if(head != null && head.next!= null){
+                temp = head.value;
+                head.value = head.next.value;
+                head.next.value = temp;
+              if(head.next.next != null){
+                  swap(head.next.next);
+              }
+          }
+          return head;
+
+    }
+
+    public static int listLength(Node head){
+        int length = 0 ;
+        while(head!=null){
+            length++;
+            head = head.next;
+        }
+        return length;
+    }
+
+    /**
+     * Reverse a Linked List
+     * @param head
+     * @return
+     */
+    public static Node reverse(Node head){
+            if(head == null){
+                return null;
+            }else{
+                if(head.next != null){
+                    Node rest = reverse(head.next);
+                    head.next.next = head;
+                    head.next = null;
+                    head = rest;
+                }
+                return head;
+            }
+    }
+
+    public static Node mergeList(Node l1, Node l2){
+       if(l1 == null){
+           return l2;
+       }
+       if(l2 == null){
+           return l1;
+       }
+       if(Integer.parseInt(l1.value) < Integer.parseInt(l2.value)){
+           l1.next = mergeList(l1.next,l2);
+           return l1;
+       }else{
+           l2.next = mergeList(l1, l2.next);
+           return l2;
+       }
     }
 }

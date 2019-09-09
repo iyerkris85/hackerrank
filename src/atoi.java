@@ -2,8 +2,7 @@ public class atoi {
 
     public static void main(String args[]){
 
-        String input = args[0];
-        System.out.println(input.charAt(0));
+        String input = "-89 562 hkhkj 87 088 656 -98";//args[0];
         System.out.println(atoi(input));
     }
 

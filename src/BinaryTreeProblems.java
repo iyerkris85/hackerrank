@@ -13,19 +13,58 @@ class Node
 }
 class BinaryTreeProblems
 {
+    public static ArrayList<Integer> values = new ArrayList<Integer>();
     public static void main(String args[]){
 
-        Node head = null;
-        int numbers[] = {50,56,33,45,23,67,17,34,89,74,64,12,94};
-        for(int i=0;i<numbers.length;i++){
-            head = buildBinaryTree(numbers[i],head);
+//        Node head = null;
+//        int numbers[] = {50,56,33,45,23,67,17,34,89,74,64,12,94};
+//        for(int i=0;i<numbers.length;i++){
+//            head = buildBinaryTree(numbers[i],head);
+//        }
+//        inOrderTraversal(head);
+//        head = rotateRight(head);
+//        System.out.println("After Rotation: ");
+//        inOrderTraversal(head);
+//        System.out.println("Height of Tree: "+heightofTree(head));
+//        System.out.println("Lowest Ancestor : "+lowestAncestor(head,17,94));
+
+        Node sampleTree = new Node(0);
+        sampleTree.left = new Node(-1);
+        sampleTree.right = new Node(15);
+        Node right = sampleTree.right;
+        right.left = new Node(6);
+        right.right = new Node(20);
+
+        System.out.println("The given tree "+ (isValidBST(sampleTree)?"is":"is not") +" binary");
+    }
+
+    /**
+     * Check Valid BST
+     * @param root
+     * @return
+     */
+    public static boolean isValidBST(Node root){
+        if(isValid(root, null, null)){
+            return true;
+        }else{
+            return false;
         }
-        inOrderTraversal(head);
-        head = rotateRight(head);
-        System.out.println("After Rotation: ");
-        inOrderTraversal(head);
-        System.out.println("Height of Tree: "+heightofTree(head));
-        System.out.println("Lowest Ancestor : "+lowestAncestor(head,17,94));
+    }
+
+    public static boolean isValid(Node root, Node l, Node r){
+        if(root == null){
+            return true;
+        }
+
+        if(l!=null && (root.value <= l.value)){
+            return false;
+        }
+
+        if(r!=null && (root.value >= r.value)){
+            return false;
+        }
+
+        return isValid(root.left, l, root) && isValid(root.right, root, r);
     }
 
     //Build a sample binary tree
@@ -47,6 +86,7 @@ class BinaryTreeProblems
         if(tree !=null){
             inOrderTraversal(tree.left);
             System.out.println(tree.value);
+            values.add(tree.value);
             inOrderTraversal(tree.right);
         }
     }

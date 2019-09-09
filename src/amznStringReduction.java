@@ -8,7 +8,7 @@ public class amznStringReduction {
     static ArrayList<Character> reducedString = new ArrayList<Character>();
     public static void main(String args[]){
 
-        System.out.println(getCombinations("abcdeebc",3));
+        System.out.println(getCombinations("bccvfghyttrf",5));
     }
 
     public static List<String> getCombinations(final String givenString, final int num){

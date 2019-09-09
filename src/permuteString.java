@@ -3,19 +3,18 @@
     public class permuteString {
 
     private boolean[] used;
-        private StringBuilder out = new StringBuilder();
-        private final String in;
+    private StringBuilder out = new StringBuilder();
+    private final String in;
 
-        public permuteString( final String str ){
-            in = str;
-            used = new boolean[ in.length() ];
-        }
+    public permuteString( final String str ){
+        in = str;
+        used = new boolean[ in.length() ];
+    }
 
-        public static void main(String args[]){
-
-            permuteString perm = new permuteString("abcde");
-            perm.permute();
-        }
+    public static void main(String args[]){
+        permuteString perm = new permuteString("abcde");
+        perm.permute();
+    }
 
         public void permute( ){
             if( out.length() == in.length() ){
