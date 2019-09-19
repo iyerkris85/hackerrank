@@ -24,7 +24,7 @@ public class CheckAnagram {
             }
         }
 
-        return sbSecond.length()==0 ? true : false;
+        return sbSecond.length() == 0;
 
     }
 
