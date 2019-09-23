@@ -38,6 +38,4 @@ public class subarraysequence {
         int[] array = {3, 1, 4, 2, 9, 30, 7};
         System.out.println("Sequence " + (containsSequence(array, 11)?"exists":"not exists"));
     }
-
-
 }
