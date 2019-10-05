@@ -1,7 +1,7 @@
 public class kth {
 
     public static void main(String args[]){
-        System.out.println("Kth Element is "+ kthGrammar(4,5));
+        System.out.println("Kth Element is "+ kthGrammar(10,5));
     }
 
     public static int kthGrammar(int N, int K) {

@@ -20,7 +20,7 @@ public class noofIslands {
                                 {'0','0','0','1','1'},
                                };
 
-        System.out.println(numIslands(samplegrid1));
+        System.out.println(numIslands(samplegrid2));
     }
 
 

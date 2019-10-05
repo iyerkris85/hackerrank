@@ -38,6 +38,8 @@ public class getMinSortSwap {
         list.add(5);
         list.add(6);
         list.add(7);
+        list.add(8);
+        list.add(9);
 
 
         getMinSortSwap sample = new getMinSortSwap();
