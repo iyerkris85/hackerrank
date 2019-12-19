@@ -10,9 +10,9 @@ public class MinimumWindow {
             return "";
         }
 
-        //If S and T are equal then return s
+        //If S and T are equal then return salesforce-3
         if(s.length() == t.length()){
-            //If S and T are equal then return s
+            //If S and T are equal then return salesforce-3
             if(s.compareTo(t) == 0){
                 return s;
             }
@@ -27,7 +27,7 @@ public class MinimumWindow {
 
         int required = dictT.size();
 
-        // Filter all the characters from s into a new list along with their index.
+        // Filter all the characters from salesforce-3 into a new list along with their index.
         // The filtering criteria is that the character should be present in t.
         List<Pair<Integer, Character>> filteredS = new ArrayList<Pair<Integer, Character>>();
         for (int i = 0; i < s.length(); i++) {
@@ -41,7 +41,7 @@ public class MinimumWindow {
         Map<Character, Integer> windowCounts = new HashMap<Character, Integer>();
         int[] ans = {-1, 0, 0};
 
-        // Look for the characters only in the filtered list instead of entire s.
+        // Look for the characters only in the filtered list instead of entire salesforce-3.
         // This helps to reduce our search.
         // Hence, we follow the sliding window approach on as small list.
         while (r < filteredS.size()) {

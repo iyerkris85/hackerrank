@@ -1,51 +1,75 @@
 package linkedin;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Arrays;
+import java.util.*;
 
-class Sortbyindex implements Comparator<int[]>
-{
-    // Used for sorting in ascending order of
-    // roll number
-    public int compare(int[] a, int[] b)
-    {
-        return Integer.compare(a[0],b[0]);
-    }
-}
 
 public class mergeIntervals {
 
-    public static int[][] merge(int[][] intervals) {
-        //Sort Array
-        Arrays.sort(intervals, new Sortbyindex());
-        List<int[]> merged = new ArrayList();
-        for(int i=0; i<intervals.length; i++){
-            if (merged.isEmpty()) {
-                merged.add(intervals[i]);
+    class Sortmerge implements Comparator<ArrayList<Integer>>
+    {
+        public int compare(ArrayList<Integer> a, ArrayList<Integer> b){
+            return a.get(1) - b.get(1);
+        }
+    }
+
+    public ArrayList<ArrayList<Integer>> merge(ArrayList<ArrayList<Integer>> intervals) {
+
+        Collections.sort(intervals, new Sortmerge());
+        ArrayList<ArrayList<Integer>> mergedList = new ArrayList<>();
+
+        //for each
+        for(ArrayList<Integer> inte : intervals){
+
+            if(mergedList.isEmpty()){
+                mergedList.add(inte);
             }else{
-                int[] last = merged.get(merged.size() - 1);
-                if(last[1] < intervals[i][0]){
-                    merged.add(intervals[i]);
+                ArrayList<Integer> lastItem = mergedList.get(mergedList.size()-1);
+                if(lastItem.get(1) < inte.get(0)){
+                    mergedList.add(inte);
                 }else{
-                    last[1] = Math.max(last[1],intervals[i][1]);
-                    merged.remove(merged.size() - 1);
-                    merged.add(last);
+                    //merge
+                    int end = Math.max(lastItem.get(1), inte.get(1));
+                    lastItem.set(1, end);
                 }
             }
-        }
-        int[][] arr = new int[merged.size()][];
 
-        for(int i = 0; i < merged.size(); i++) {
-            if (merged.get(i) != null) {
-                arr[i] = merged.get(i);
-            }
         }
-        return arr;
+
+        return mergedList;
     }
 
     public static void main(String[] args) {
-        int[][] intervals={{1,3},{15,18},{8,10},{2,6}};
-        System.out.println(Arrays.deepToString(merge(intervals)));
+
+        ArrayList<ArrayList<Integer>> intervals = new ArrayList<>();
+
+        ArrayList<Integer> interval1 = new ArrayList<>();
+        ArrayList<Integer> interval2 = new ArrayList<>();
+        ArrayList<Integer> interval3 = new ArrayList<>();
+        ArrayList<Integer> interval4 = new ArrayList<>();
+        ArrayList<Integer> interval5 = new ArrayList<>();
+
+        interval1.add(9);
+        interval1.add(10);
+
+        interval2.add(10);
+        interval2.add(11);
+
+        interval3.add(13);
+        interval3.add(14);
+
+        interval4.add(14);
+        interval4.add(15);
+
+        interval5.add(14);
+        interval5.add(16);
+
+        intervals.add(interval5);
+        intervals.add(interval2);
+        intervals.add(interval3);
+        intervals.add(interval4);
+        intervals.add(interval1);
+
+        mergeIntervals randomObject = new mergeIntervals();
+        System.out.println(randomObject.merge(intervals));
+
     }
 }

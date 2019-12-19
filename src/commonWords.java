@@ -7,22 +7,26 @@ public class commonWords {
 
 
     public String mostCommonWord(String paragraph, String[] banned) {
-        String para = paragraph.toLowerCase();
-        Set<String> banset = new HashSet();
-        for (String word: banned) banset.add(word);
-        Map<String, Integer> countWords = new HashMap();
-        String ans = "";
-        int ansfreq = 0;
-
-        StringBuilder word = new StringBuilder();
-        for (char c: para.toCharArray()){
-            if(Character.isLetter(c)){
-                word.append(Character.toLowerCase(c));
-            }else if(word.length() > 0){
-
+        String res = "";
+        String[] para = paragraph.toLowerCase().split("\\W+");
+        Map<String, Integer> map = new HashMap<>();
+        Set<String> set = new HashSet<>();
+        for (String s : banned) {
+            set.add(s);
+        }
+        int max = 0;
+        for (String s : para) {
+            if (!set.contains(s)) {
+                map.put(s, map.getOrDefault(s, 0) + 1);
+                max = Math.max(max, map.get(s));
             }
         }
-        return ans;
+        for (String s : map.keySet()) {
+            if (map.get(s) == max) {
+                res = s;
+            }
+        }
+        return res;
     }
 
     public static void main(String args[]){

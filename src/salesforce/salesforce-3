@@ -1,0 +1,156 @@
+Given a file with list of commands followed by packages perform the commands and print the output
+
+
+First line will state the number of commands
+Each subsequent line will have the command in All CAPS followed by package names on which the command should be executed
+END will always be the last command and it means the END of the file
+
+DEPEND will be followed by a whitespace (space or a tab) with package names
+the first package name depends on all the package names that follow it
+
+eg. DEPEND A B C
+A depends on B and A depends on C
+
+DEPEND A B
+DEPEND B A  //Not Allowed
+Circular dependency is not allowed and must be caught by error control
+
+INSTALL will install the package if not already installed along with all its dependecies
+DEPEND A B
+INSTALL A
+
+Installing A
+Installing B
+
+REMOVE will remove the package and all its dependencies. The package will not be removed if any other installed pacakge is dependent on the package that needs to br removed
+DEPEND A B
+INSTALL A
+REMOVE A
+
+Removing A
+Removing B
+
+List will list all the installed packages
+LIST
+A
+B
+C
+D
+
+
+Expected output
+
+For every command line countered
+1) Echo the command line
+2) DEPEND:- will not print anything after 1. unless there is a circular dependency ERROR
+3) INSTALL will print either error, {packagename} already Installed or Installing {packagename}
+4) REMOVE will print all the packages being removed in a new line
+Removing A
+Removing B
+
+or error Cannot Remove A
+
+5) LIST will print all the installed packages in a new line
+A
+B
+C
+
+6) END will print nothing
+
+
+Sample Input :-
+5
+DEPEND A B C
+INSTALL B
+INSTALL A
+REMOVE C
+END
+
+Sample Output:-
+DEPEND A B C
+INSTALL B
+Installing B
+INSTALL A
+Installing A
+Installing C
+REMOVE C
+Cannot Remove C
+END
+
+
+Sample Input:-
+22
+DEPEND TELNET TCPIP NETCARD
+DEPEND TCPIP NETCARD
+DEPEND NETCARD TCPIP
+DEPEND DNS TCPIP NETCARD
+DEPEND BROWSER TCPIP HTML
+INSTALL NETCARD
+INSTALL TELNET
+INSTALL foo
+REMOVE NETCARD
+INSTALL BROWSER
+INSTALL DNS
+LIST
+REMOVE TELNET
+REMOVE NETCARD
+REMOVE DNS
+REMOVE NETCARD
+INSTALL NETCARD
+REMOVE TCPIP
+REMOVE BROWSER
+REMOVE TCPIP
+LIST
+END
+
+Sample Output:-
+DEPEND TELNET TCPIP NETCARD
+DEPEND TCPIP NETCARD
+DEPEND NETCARD TCPIP
+TCPIP depends on NETCARD, ignoring command
+DEPEND DNS TCPIP NETCARD
+DEPEND BROWSER TCPIP HTML
+INSTALL NETCARD
+Installing NETCARD
+INSTALL TELNET
+Installing TELNET
+Installing TCPIP
+INSTALL foo
+Installing foo
+REMOVE NETCARD
+Cannot remove NETCARD
+INSTALL BROWSER
+Installing BROWSER
+Installing HTML
+INSTALL DNS
+Installing DNS
+LIST
+NETCARD
+TELNET
+TCPIP
+foo
+BROWSER
+HTML
+DNS
+REMOVE TELNET
+Removing TELNET
+REMOVE NETCARD
+Cannot remove NETCARD
+REMOVE DNS
+Removing DNS
+REMOVE NETCARD
+Cannot remove NETCARD
+INSTALL NETCARD
+NETCARD is already installed
+REMOVE TCPIP
+Cannot remove TCPIP
+REMOVE BROWSER
+Removing BROWSER
+Removing TCPIP
+Removing HTML
+REMOVE TCPIP
+TCPIP is not installed
+LIST
+NETCARD
+foo
+END
