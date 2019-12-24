@@ -23,6 +23,6 @@ public class kthunsorted {
     public static void main(String args[]){
         kthunsorted sample = new kthunsorted();
         int[] nos = {2,6,3,88,23,45};
-        System.out.println(sample.findKthLargest(nos,6));
+        System.out.println(sample.findKthLargest(nos,4));
     }
 }

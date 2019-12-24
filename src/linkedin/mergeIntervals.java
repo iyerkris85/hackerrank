@@ -11,9 +11,18 @@ public class mergeIntervals {
         }
     }
 
+    class SortTwoDimensionalArray implements Comparator<int[]>
+    {
+        public int compare(int[]a, int[]b)
+        {
+            return a[1]-b[1];
+        }
+    }
+
     public ArrayList<ArrayList<Integer>> merge(ArrayList<ArrayList<Integer>> intervals) {
 
         Collections.sort(intervals, new Sortmerge());
+        //Collections.sort(intervals, new SortTwoDimensionalArray());
         ArrayList<ArrayList<Integer>> mergedList = new ArrayList<>();
 
         //for each
@@ -28,7 +37,9 @@ public class mergeIntervals {
                 }else{
                     //merge
                     int end = Math.max(lastItem.get(1), inte.get(1));
+                    int start = Math.min(lastItem.get(0), inte.get(0));
                     lastItem.set(1, end);
+                    lastItem.set(0, start);
                 }
             }
 
@@ -46,6 +57,7 @@ public class mergeIntervals {
         ArrayList<Integer> interval3 = new ArrayList<>();
         ArrayList<Integer> interval4 = new ArrayList<>();
         ArrayList<Integer> interval5 = new ArrayList<>();
+        ArrayList<Integer> interval6 = new ArrayList<>();
 
         interval1.add(9);
         interval1.add(10);
@@ -56,17 +68,21 @@ public class mergeIntervals {
         interval3.add(13);
         interval3.add(14);
 
-        interval4.add(14);
-        interval4.add(15);
+        interval4.add(12);
+        interval4.add(16);
 
-        interval5.add(14);
-        interval5.add(16);
+        interval5.add(18);
+        interval5.add(19);
+
+        interval6.add(20);
+        interval6.add(22);
 
         intervals.add(interval5);
         intervals.add(interval2);
         intervals.add(interval3);
         intervals.add(interval4);
         intervals.add(interval1);
+        intervals.add(interval6);
 
         mergeIntervals randomObject = new mergeIntervals();
         System.out.println(randomObject.merge(intervals));
